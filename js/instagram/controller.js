@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav, $mdBottomSheet, $mdDialog) {
+app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
 
 	$scope.onSwipeLeft = function(ev) {
 		$rootScope.toggleSidenav('left');
@@ -39,7 +39,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 		$scope.alert = '';
 		$mdBottomSheet.show({
 			templateUrl: 'bottomsheet.html',
-			controller: 'BottomSheetCtrl',
+			controller: 'MapCtrl',
 			targetEvent: $event
 		}).then(function(clickedItem) {
 			$scope.alert = clickedItem.name + ' clicked!';
@@ -49,7 +49,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	$scope.showAdd = function(ev) {
 		$mdDialog.show({
 			controller: 'DialogCtrl',
-			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" height="475"></md-content></md-dialog>',
+			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content></md-dialog>',
 			targetEvent: ev
 		})
 			.then(function(answer) {
@@ -63,5 +63,16 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 		var date = new Date(timestamp * 1000);
 		return date
 	}
+
+	$rootScope.showSimpleToast = function() {
+		$mdToast.show(
+			$mdToast.simple()
+				.content('Welcome Rene! Search for a hashtag')
+				.position('bottom left')
+				.hideDelay(3000)
+		);
+	};
+
+	$rootScope.showSimpleToast();
 
 });

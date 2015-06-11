@@ -17,3 +17,35 @@ md-bottom-sheet{
 	color: #ffffff;
 	background-color: rgba(0,0,0,0.4) ;
 }
+
+md-bottom-sheet.md-default-theme {
+	 background-color: rgba(34,34,34,0.55); !important;
+	 border-top-color: rgba(34,34,34,0.0); !important;
+}
+
+@media only screen and (max-device-width : 768px){
+
+	md-dialog{
+		max-width: 100%;
+	}
+
+	md-bottom-sheet.md-grid {
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 0;
+	}
+}
+md-backdrop.md-opaque.md-default-theme {
+	background-color: rgba(0,0,0,0.4);
+}
+
+#map{
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #0168C7;
+	height: 100%;
+	cursor: cell;
+}
+
