@@ -1,62 +1,32 @@
 'use strict';
 
-app.controller('InstagramCtrl', ['$scope', 'Instagram', 
-	function($scope, Instagram) {
+app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav) {
 
-		$scope.example1 = {
-			hash: 'Seattle'
-		};
+	$scope.onSwipeLeft = function(ev) {
+		$rootScope.toggleSidenav('left');
+	};
 
-		$scope.example2 = {
-			hash: 'nba'
-		};
+	$rootScope.toggleSidenav = function(menuId) {
+		$mdSidenav(menuId).toggle();
+	};
 
-		$scope.example3 = {
-			hash: 'beach'
-		};
+	$rootScope.currentHash = {
+		hash: 'Seattle'
+	};
 
-	    Instagram.get(20, $scope.example1.hash)
-		    .success(function(response, status, headers, config) {
-		    	if(response.meta.code !== 200){
-		    		$scope.example1.error = response.meta.error_type + ' | ' + response.meta.error_message;
-		    		return;
-		    	}		    
-		    	if(response.data.length > 0){
-		    		$scope.example1.items = response.data;
-		    	}else{
-		    		$scope.example1.error = "This hashtag has returned no results";	
-		    	}				
-		    });
 
-	    Instagram.get(9, $scope.example2.hash)
-		    .success(function(response, status, headers, config) {
-		    	console.log('response', response);
-		    	if(response.meta.code !== 200){
-		    		$scope.example2.error = response.meta.error_type + ' | ' + response.meta.error_message;
-		    		return;
-		    	}
-		    	if(response.data.length > 0){
-		    		$scope.example2.items = response.data;
-		    	}else{
-		    		$scope.example2.error = "This hashtag has returned no results";
-		    	}
-		    });
+	Instagram.get(20, $rootScope.currentHash.hash)
+		.success(function(response, status, headers, config) {
+			console.log(response);
+			if(response.meta.code !== 200){
+				$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+				return;
+			}
+			if(response.data.length > 0){
+				$rootScope.currentHash.items = response.data;
+			}else{
+				$rootScope.currentHash.error = "This hashtag has returned no results";
+			}
+		});
 
-	    Instagram.get(9, $scope.example3.hash)
-		    .success(function(response, status, headers, config) {
-		    	if(response.meta.code !== 200){
-		    		$scope.example3.error = response.meta.error_type + ' | ' + response.meta.error_message;
-		    		return;
-		    	}
-		    	if(response.data.length > 0){
-		    		$scope.example3.items = response.data;
-		    	}else{
-		    		$scope.example3.error = "This hashtag has returned no results";
-		    	}
-		    })
-		    .error(function(response, status, headers, config) {
-		    	$scope.example3.error = 'Something went terrible wrong { '+ angular.toJson(response) + '}';
-		    });
-
-  	}
-]);
+});
