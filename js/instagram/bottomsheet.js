@@ -2,33 +2,9 @@
 
 app.controller('BottomSheetCtrl', function($scope, $rootScope, Instagram) {
 
-	$rootScope.selectedHash = {
-		tag: 'Seattle'
-	};
-
-	$rootScope.showProgressBar = false;
-
-	$scope.getHashTag = function (){
-		$rootScope.showProgressBar = true;
-		console.log("$rootScope.selectedHash", $rootScope.selectedHash.tag);
-		Instagram.get(20, $rootScope.selectedHash.tag || "seattle")
-			.success(function(response, status, headers, config) {
-				console.log(response);
-				$rootScope.showProgressBar = false;
-				$rootScope.currentHash.items = {};
-				if(response.meta.code !== 200){
-					$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
-					return;
-				}
-				if(response.data.length > 0){
-					$rootScope.currentHash.items = response.data;
-					$rootScope.showProgressBar = false;
-				}else{
-					$rootScope.currentHash.error = "This hashtag has returned no results";
-					$rootScope.showProgressBar = false;
-				}
-			});
-	}
+	var googleStaticImage = 'http://maps.googleapis.com/maps/api/staticmap?' +
+		'center=40.714728,-73.998672&zoom=12&scale=2&size=600x300&maptype=roadmap&format=png&visual_refresh=true&' +
+		'markers=size:mid%7Ccolor:0x053dff%7Clabel:0%7CAlbany,+NY',
 
 	
 });
