@@ -21,7 +21,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	}
 
 
-	Instagram.get(40, $rootScope.currentHash.hash)
+	Instagram.get(50, $rootScope.currentHash.hash)
 		.success(function(response, status, headers, config) {
 			console.log(response);
 			if(response.meta.code !== 200){
