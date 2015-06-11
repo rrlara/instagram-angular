@@ -59,4 +59,9 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 			});
 	};
 
+	$scope.dateconverter = function (timestamp){
+		var date = new Date(timestamp * 1000);
+		return date
+	}
+
 });
