@@ -2,6 +2,8 @@ figcaption{
 	width: 100%;
 }
 
-/*.fixed {*/
-	/*position: fixed;*/
-/*}*/
+md-bottom-sheet{
+	height: 75% !important;
+	background-color: rgba(34,34,34,0.55); !important;
+	overflow: auto;
+}

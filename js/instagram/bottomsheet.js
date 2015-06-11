@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('SideBarCtrl', function($scope, $rootScope, Instagram) {
+app.controller('BottomSheetCtrl', function($scope, $rootScope, Instagram) {
 
 	$rootScope.selectedHash = {
 		tag: 'Seattle'

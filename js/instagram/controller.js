@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav) {
+app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav, $mdBottomSheet, $mdDialog) {
 
 	$scope.onSwipeLeft = function(ev) {
 		$rootScope.toggleSidenav('left');
@@ -13,6 +13,12 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	$rootScope.currentHash = {
 		hash: 'Seattle'
 	};
+
+	$scope.addToImageClicked = function (item){
+		$rootScope.imageClicked = [];
+		$rootScope.imageClicked.push(item);
+		//console.log("imageClicked", $rootScope.imageClicked);
+	}
 
 
 	Instagram.get(20, $rootScope.currentHash.hash)
@@ -28,5 +34,29 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 				$rootScope.currentHash.error = "This hashtag has returned no results";
 			}
 		});
+
+	$scope.showListBottomSheet = function($event) {
+		$scope.alert = '';
+		$mdBottomSheet.show({
+			templateUrl: 'bottomsheet.html',
+			controller: 'BottomSheetCtrl',
+			targetEvent: $event
+		}).then(function(clickedItem) {
+			$scope.alert = clickedItem.name + ' clicked!';
+		});
+	};
+
+	$scope.showAdd = function(ev) {
+		$mdDialog.show({
+			controller: 'DialogCtrl',
+			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" height="475"></md-content></md-dialog>',
+			targetEvent: ev
+		})
+			.then(function(answer) {
+				$scope.alert = 'You said the information was "' + answer + '".';
+			}, function() {
+				$scope.alert = 'You cancelled the dialog.';
+			});
+	};
 
 });
