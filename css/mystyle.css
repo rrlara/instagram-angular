@@ -32,6 +32,18 @@ md-bottom-sheet.md-default-theme {
 	background-repeat: no-repeat;
 }
 
+#caption{
+	padding: 10px;
+	font-size: 20px;
+	color: #ffffff;
+	background-color: rgba(0,0,0,0.4) ;
+	/*position: absolute;*/
+	bottom: 0px;
+	/*height: 50px;*/
+	width: 100%;
+
+}
+
 @media only screen and (max-device-width : 768px){
 
 	md-dialog{

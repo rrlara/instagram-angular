@@ -6,5 +6,7 @@ app.controller('DialogCtrl', function($scope, $rootScope, Instagram) {
 
 	$scope.Image = $rootScope.imageClicked[0];
 
+	$scope.caption = $rootScope.imageClicked[1];
+
 	
 });

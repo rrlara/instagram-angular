@@ -30,7 +30,10 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 
 	$scope.addToImageClicked = function (item){
 		$rootScope.imageClicked = [];
-		$rootScope.imageClicked.push(item);
+		$rootScope.imageClicked.push(item.images.standard_resolution.url);
+
+		$rootScope.imageClickedCaption = [];
+		$rootScope.imageClicked.push(item.caption.text);
 		//console.log("imageClicked", $rootScope.imageClicked);
 	}
 
@@ -63,7 +66,8 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	$scope.showAdd = function(ev) {
 		$mdDialog.show({
 			controller: 'DialogCtrl',
-			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content></md-dialog>',
+			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content>' +
+			'<div id="caption">{{caption}}</div></md-dialog>',
 			targetEvent: ev
 		})
 			.then(function(answer) {
