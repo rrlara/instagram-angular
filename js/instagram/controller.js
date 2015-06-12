@@ -14,6 +14,20 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 		hash: 'Seattle'
 	};
 
+	$rootScope.location = {
+		lat: '',
+		ln: ''
+	};
+
+	$scope.clickedInstagram = function (item){
+
+		console.log("item: ", item);
+
+		$rootScope.location.lat = item.location.latitude;
+		$rootScope.location.lng = item.location.longitude;
+
+	}
+
 	$scope.addToImageClicked = function (item){
 		$rootScope.imageClicked = [];
 		$rootScope.imageClicked.push(item);
@@ -39,7 +53,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 		$scope.alert = '';
 		$mdBottomSheet.show({
 			templateUrl: 'bottomsheet.html',
-			controller: 'MapCtrl',
+			controller: 'BottomSheetCtrl',
 			targetEvent: $event
 		}).then(function(clickedItem) {
 			$scope.alert = clickedItem.name + ' clicked!';

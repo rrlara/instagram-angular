@@ -1,10 +1,14 @@
 'use strict';
 
-app.controller('BottomSheetCtrl', function($scope, $rootScope, Instagram) {
+app.controller('BottomSheetCtrl', function($scope, $rootScope) {
 
-	var googleStaticImage = 'http://maps.googleapis.com/maps/api/staticmap?' +
-		'center=40.714728,-73.998672&zoom=12&scale=2&size=600x300&maptype=roadmap&format=png&visual_refresh=true&' +
-		'markers=size:mid%7Ccolor:0x053dff%7Clabel:0%7CAlbany,+NY';
+	var lat = $rootScope.location.lat;
+	var	lng = $rootScope.location.lng;
+
+	$scope.Image = 'https://maps.googleapis.com/maps/api/staticmap?scale=1' +
+		'&zoom=13&size=640x640&sensor=false&maptype=terrain&markers=color:red|' + lat + ',' + lng;
+
+	console.log($scope.Image);
 
 	
 });

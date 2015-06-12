@@ -23,6 +23,15 @@ md-bottom-sheet.md-default-theme {
 	 border-top-color: rgba(34,34,34,0.0); !important;
 }
 
+#map{
+	max-width: 640px;
+	background-color: #0168C7;
+	height: 100%;
+	margin: auto;
+	cursor: cell;
+	background-repeat: no-repeat;
+}
+
 @media only screen and (max-device-width : 768px){
 
 	md-dialog{
@@ -34,18 +43,21 @@ md-bottom-sheet.md-default-theme {
 		padding-right: 0px;
 		padding-top: 0;
 	}
+
+	#map{
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		background-color: #0168C7;
+		height: 100%;
+		cursor: cell;
+		background-repeat: no-repeat;
+	}
 }
 md-backdrop.md-opaque.md-default-theme {
 	background-color: rgba(0,0,0,0.4);
 }
 
-#map{
-	right: 0;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	background-color: #0168C7;
-	height: 100%;
-	cursor: cell;
-}
+
 
