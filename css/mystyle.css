@@ -41,6 +41,8 @@ md-bottom-sheet.md-default-theme {
 	bottom: 0px;
 	/*height: 50px;*/
 	width: 100%;
+	max-width: 640px;
+	margin: auto;
 
 }
 
