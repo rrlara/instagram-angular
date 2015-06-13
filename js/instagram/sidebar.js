@@ -1,9 +1,9 @@
 'use strict';
 
-app.controller('SideBarCtrl', function($scope, $rootScope, Instagram) {
+app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 
 	$rootScope.selectedHash = {
-		tag: 'Seattle'
+		tag: 'Popular'
 	};
 
 	$rootScope.showProgressBar = false;
@@ -11,7 +11,7 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Instagram) {
 	$scope.getHashTag = function (){
 		$rootScope.showProgressBar = true;
 		console.log("$rootScope.selectedHash", $rootScope.selectedHash.tag);
-		Instagram.get(20, $rootScope.selectedHash.tag || "seattle")
+		Hashtags.hashtags(20, $rootScope.selectedHash.tag || "seattle")
 			.success(function(response, status, headers, config) {
 				console.log(response);
 				$rootScope.showProgressBar = false;

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
+app.controller('InstagramCtrl', function($scope, $rootScope, Popular, Location, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
 
 	$scope.onSwipeLeft = function(ev) {
 		$rootScope.toggleSidenav('left');
@@ -11,7 +11,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	};
 
 	$rootScope.currentHash = {
-		hash: 'Seattle'
+		hash: 'Popular'
 	};
 
 	$rootScope.location = {
@@ -37,8 +37,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 		//console.log("imageClicked", $rootScope.imageClicked);
 	}
 
-
-	Instagram.get(50, $rootScope.currentHash.hash)
+	Popular.popular()
 		.success(function(response, status, headers, config) {
 			console.log(response);
 			if(response.meta.code !== 200){
@@ -51,6 +50,8 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 				$rootScope.currentHash.error = "This hashtag has returned no results";
 			}
 		});
+
+
 
 	$scope.showListBottomSheet = function($event) {
 		$scope.alert = '';
@@ -92,5 +93,39 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Instagram, $mdSiden
 	};
 
 	$rootScope.showSimpleToast();
+
+
+	$scope.getLocation = function (){
+		function success(pos) {
+			var crd = pos.coords;
+
+			console.log('Your current position is:');
+			console.log('Latitude : ' + crd.latitude);
+			console.log('Longitude: ' + crd.longitude);
+			console.log('More or less ' + crd.accuracy + ' meters.');
+
+			Location.location(crd.latitude,crd.longitude)
+				.success(function(response, status, headers, config) {
+					console.log(response);
+					if(response.meta.code !== 200){
+						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+						return;
+					}
+					if(response.data.length > 0){
+						$rootScope.currentHash.items = response.data;
+					}else{
+						$rootScope.currentHash.error = "This hashtag has returned no results";
+					}
+				});
+
+
+		};
+
+		function error(err) {
+			console.warn('ERROR(' + err.code + '): ' + err.message);
+		};
+
+		navigator.geolocation.getCurrentPosition(success, error);
+	}
 
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('DialogCtrl', function($scope, $rootScope, Instagram) {
+app.controller('DialogCtrl', function($scope, $rootScope) {
 
 	console.log("imageClicked", $rootScope.imageClicked);
 
