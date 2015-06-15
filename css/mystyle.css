@@ -25,7 +25,7 @@ md-bottom-sheet.md-default-theme {
 
 #map{
 	max-width: 640px;
-	background-color: #0168C7;
+	/*background-color: #0168C7;*/
 	height: 100%;
 	margin: auto;
 	cursor: cell;
@@ -63,7 +63,7 @@ md-bottom-sheet.md-default-theme {
 		left: 0;
 		top: 0;
 		bottom: 0;
-		background-color: #0168C7;
+		/*background-color: #0168C7;*/
 		height: 100%;
 		cursor: cell;
 		background-repeat: no-repeat;
@@ -71,6 +71,10 @@ md-bottom-sheet.md-default-theme {
 }
 md-backdrop.md-opaque.md-default-theme {
 	background-color: rgba(0,0,0,0.4);
+}
+
+md-card-content p{
+	line-height: 1;
 }
 
 

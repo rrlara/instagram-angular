@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('InstagramCtrl', function($scope, $rootScope, Popular, Location, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
+app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, Location, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
 
 	$scope.onSwipeLeft = function(ev) {
 		$rootScope.toggleSidenav('left');
@@ -37,6 +37,20 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Popular, Location, 
 		//console.log("imageClicked", $rootScope.imageClicked);
 	}
 
+	Profile.profile()
+		.success(function(response, status, headers, config) {
+			console.log(response);
+			if(response.meta.code !== 200){
+				$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+				return;
+			}
+			if(response.data.length > 0){
+				$rootScope.currentHash.items = response.data;
+			}else{
+				$rootScope.currentHash.error = "This hashtag has returned no results";
+			}
+		});
+
 	Popular.popular()
 		.success(function(response, status, headers, config) {
 			console.log(response);
@@ -67,8 +81,11 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Popular, Location, 
 	$scope.showAdd = function(ev) {
 		$mdDialog.show({
 			controller: 'DialogCtrl',
-			template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content>' +
-			'<div id="caption">{{caption}}</div></md-dialog>',
+			//template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content>' +
+			//'<div id="caption">{{caption}}</div></md-dialog>',
+			template: '<md-dialog><md-card><img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;"> ' +
+		'<md-card-content style="max-width: 640px;">' +
+			'<p>{{caption}}</p></md-card-content></md-card></md-dialog>',
 			targetEvent: ev
 		})
 			.then(function(answer) {
