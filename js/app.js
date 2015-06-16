@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('app', ['ngMaterial']);
+var app = angular.module('app', ['ngMaterial', 'angular-video']);
 
 app.directive('backImg', function(){
     return function(scope, element, attrs){

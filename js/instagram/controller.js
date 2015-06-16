@@ -89,7 +89,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 			controller: 'DialogCtrl',
 			//template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content>' +
 			//'<div id="caption">{{caption}}</div></md-dialog>',
-			template: '<md-dialog id="md-dialog"><md-card style="background-color: #ffffff;"><img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;"> ' +
+			template: '<md-dialog id="md-dialog"><md-card style="background-color: #ffffff;"><img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;" ng-if ="isImage"><video autoplay vg-src="{{Image}}" preload="metadata" ng-if="isVideo"></video>' +
 		'<md-card-content style="max-width: 640px;">' +
 			'<a href="{{userNameLink}}" target="_blank"><span class="md-title">{{userName}}</span></a><p>{{caption}}</p></md-card-content></md-card></md-dialog>',
 			targetEvent: ev
