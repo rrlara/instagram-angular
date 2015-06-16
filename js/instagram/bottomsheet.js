@@ -26,7 +26,7 @@ app.controller('BottomSheetCtrl', function($scope, $rootScope, $timeout) {
 		}).setView([lat, lng], 13);
 		var basemapUrl = 'http://{s}.tiles.mapbox.com/v3/spatialdev.map-4o51gab2/{z}/{x}/{y}.png';
 		var basemapLayer = L.tileLayer(basemapUrl,{
-			detectRetina: true
+			//detectRetina: true
 		});
 		basemapLayer.addTo(map);
 

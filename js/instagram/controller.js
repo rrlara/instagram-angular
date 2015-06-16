@@ -134,12 +134,15 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 					$rootScope.selectedHash.tag = 'Near you';
 					if(response.meta.code !== 200){
 						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+						$rootScope.notify = false;
 						return;
 					}
 					if(response.data.length > 0){
 						$rootScope.currentHash.items = response.data;
+						$rootScope.notify = false;
 					}else{
 						$rootScope.currentHash.error = "This hashtag has returned no results";
+						$rootScope.notify = false;
 					}
 				});
 

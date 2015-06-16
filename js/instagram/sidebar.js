@@ -14,7 +14,7 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 		Hashtags.hashtags(20, $rootScope.selectedHash.tag || "seattle")
 			.success(function(response, status, headers, config) {
 				console.log(response);
-				$rootScope.notify = false;
+
 				$rootScope.currentHash.items = {};
 				if(response.meta.code !== 200){
 					$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
@@ -22,10 +22,10 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 				}
 				if(response.data.length > 0){
 					$rootScope.currentHash.items = response.data;
-					$rootScope.showProgressBar = false;
+					$rootScope.notify = false;
 				}else{
 					$rootScope.currentHash.error = "This hashtag has returned no results";
-					$rootScope.showProgressBar = false;
+					$rootScope.notify = false;
 				}
 			});
 	}
