@@ -103,5 +103,28 @@ md-progress-circular {
 	margin-top: 50%;
 }
 
+.videoTag{
+	/*background-color: rgba(255,255,255,0.9);*/
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	position: absolute;
+	z-index: 10;
+}
+
+.playerIcon {
+	width: 40px;
+	height: 50px;
+	display: block;
+	position: relative;
+	padding-top: 0!important;
+	margin-bottom: 0!important;
+	overflow: hidden;
+	margin: auto;
+	margin-top: 35%;
+	color: #ffffff;
+	font-size: 50px;
+}
 
 

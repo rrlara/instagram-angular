@@ -71,6 +71,7 @@
 
 
             <md-grid-tile ng-repeat="item in currentHash.items" back-img="{{ item.images.low_resolution.url }}" ng-click="addToImageClicked(item); showAdd($event)">
+                <div class="videoTag" ng-if="item.videos"><i class="fa fa-play playerIcon"></i></div>
                 <div class="pinLocation" ng-show="{{ item.location }}" ng-click="clickedInstagram(item); showListBottomSheet($event); $event.stopPropagation()"><i class="fa fa-map-marker"></i></div>
             </md-grid-tile>
 
