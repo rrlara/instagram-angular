@@ -2,6 +2,8 @@
 
 app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, Location, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
 
+	$rootScope.notify = true;
+
 	$scope.onSwipeLeft = function(ev) {
 		$rootScope.toggleSidenav('left');
 	};
@@ -57,6 +59,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 	Popular.popular()
 		.success(function(response, status, headers, config) {
 			console.log(response);
+			$rootScope.notify = false
 			if(response.meta.code !== 200){
 				$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
 				return;
@@ -116,9 +119,10 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 
 
 	$scope.getLocation = function (){
+		$rootScope.notify = true;
 		function success(pos) {
 			var crd = pos.coords;
-
+			$rootScope.notify = false;
 			console.log('Your current position is:');
 			console.log('Latitude : ' + crd.latitude);
 			console.log('Longitude: ' + crd.longitude);
@@ -144,6 +148,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 
 		function error(err) {
 			console.warn('ERROR(' + err.code + '): ' + err.message);
+			$rootScope.notify = false;
 		};
 
 		navigator.geolocation.getCurrentPosition(success, error);

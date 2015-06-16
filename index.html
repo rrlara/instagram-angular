@@ -44,6 +44,9 @@
         </md-content>
     </md-sidenav>
     <md-content flex md-scroll-y>
+        <div class="notificationWrapper" ng-show="notify">
+            <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+        </div>
         <md-toolbar class="fixed">
             <div class="md-toolbar-tools">
                 <md-button ng-click="toggleSidenav('left')" hide-gt-sm aria-label="Menu">
@@ -64,7 +67,6 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-progress-linear md-mode="indeterminate" ng-show="showProgressBar"></md-progress-linear>
         <md-grid-list md-cols-sm="2" md-cols-md="2" md-cols-gt-md="4" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="5px" md-gutter-gt-sm="5px">
 
 
