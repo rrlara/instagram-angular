@@ -29,12 +29,15 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 	}
 
 	$scope.addToImageClicked = function (item){
-		$rootScope.imageClicked = [];
-		$rootScope.imageClicked.push(item.images.standard_resolution.url);
+		//$rootScope.imageClicked = [];
+		//$rootScope.imageClicked.push(item.images.standard_resolution.url);
+        //
+		//$rootScope.imageClickedCaption = [];
+		//$rootScope.imageClicked.push(item.caption.text);
 
-		$rootScope.imageClickedCaption = [];
-		$rootScope.imageClicked.push(item.caption.text);
-		//console.log("imageClicked", $rootScope.imageClicked);
+		$rootScope.imageClicked = [];
+		$rootScope.imageClicked.push(item);
+		console.log($rootScope.imageClicked);
 	}
 
 	Profile.profile()
@@ -83,9 +86,9 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 			controller: 'DialogCtrl',
 			//template: '<md-dialog aria-label="Mango (Fruit)"> <md-content class="md-padding"> <img src="{{Image}}" alt="" width="100%"></md-content>' +
 			//'<div id="caption">{{caption}}</div></md-dialog>',
-			template: '<md-dialog><md-card><img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;"> ' +
+			template: '<md-dialog id="md-dialog"><md-card style="background-color: #ffffff;"><img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;"> ' +
 		'<md-card-content style="max-width: 640px;">' +
-			'<p>{{caption}}</p></md-card-content></md-card></md-dialog>',
+			'<a href="{{userNameLink}}" target="_blank"><span class="md-title">{{userName}}</span></a><p>{{caption}}</p></md-card-content></md-card></md-dialog>',
 			targetEvent: ev
 		})
 			.then(function(answer) {
@@ -124,6 +127,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 			Location.location(crd.latitude,crd.longitude)
 				.success(function(response, status, headers, config) {
 					console.log(response);
+					$rootScope.selectedHash.tag = 'Near you';
 					if(response.meta.code !== 200){
 						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
 						return;
