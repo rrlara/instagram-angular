@@ -65,7 +65,7 @@ app.factory('Location', ['$http', function($http) {
 	var clientId = '53b03b9f9ca24bfdb622fd49cd57f1b2';
 	return {
 		location: function(lat, lng) {
-			var request = "/media/search?lat=" + lat + "&lng=" + lng + "&distance=5km";
+			var request = "/media/search?lat=" + lat + "&lng=" + lng + "&distance=5000";
 			var url = base + request;
 			var config = {
 				'params': {
