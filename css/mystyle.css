@@ -133,12 +133,14 @@ md-progress-circular {
 	bottom: 10px;
 	left: 20px;
 	color: #fff;
+	text-shadow: black 0.1em 0.1em 0.2em
 }
 .comments{
 	position: absolute;
 	bottom: 10px;
 	right: 20px;
 	color: #fff;
+	text-shadow: black 0.1em 0.1em 0.2em
 }
 
 
