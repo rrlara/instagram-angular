@@ -128,19 +128,27 @@ md-progress-circular {
 	font-size: 50px;
 }
 
-.likes{
+.socialContainer{
 	position: absolute;
+	bottom: 106px;
+	height: 30px;
+	width: 96%;
+}
+
+.likes{
 	bottom: 10px;
 	left: 20px;
 	color: #fff;
-	text-shadow: black 0.1em 0.1em 0.2em
+	text-shadow: black 0.1em 0.1em 0.2em;
+	float: left;
+	margin-left: 10px;
 }
 .comments{
-	position: absolute;
-	bottom: 10px;
 	right: 20px;
 	color: #fff;
-	text-shadow: black 0.1em 0.1em 0.2em
+	text-shadow: black 0.1em 0.1em 0.2em;
+	float: right;
+	margin-right: 10px;
 }
 
 
@@ -158,5 +166,9 @@ md-progress-circular {
 .avatarImg{
 	border: solid #ffffff 1px;
 }
+
+
+
+
 
 

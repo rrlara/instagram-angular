@@ -1,0 +1,14 @@
+<md-dialog id="md-dialog">
+    <md-card style="background-color: #ffffff;">
+        <img ng-src="{{Image}}" class="md-card-image" style="max-width: 640px;" ng-if ="isImage">
+        <video autoplay vg-src="{{Image}}" preload="metadata" ng-if="isVideo"></video>
+        <md-card-content style="max-width: 640px; overflow:auto; max-height: 100px">
+            <a href="{{userNameLink}}" target="_blank"><span class="md-title">{{userName}}</span></a>
+            <p>{{caption}}</p>
+        </md-card-content>
+        <div class="socialContainer">
+            <div class="likes"><i class="fa fa-heart"></i> {{ likeCount }}</div>
+            <div class="comments"><i class="fa fa-comment"></i> {{ commentCount }}</div>
+        </div>
+    </md-card>
+</md-dialog>
