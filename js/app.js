@@ -36,16 +36,16 @@ app.directive("imageResize", [
     }
 ]);
 
-app.directive('scrollToTop', [function(){
-    return {
-        restrict: 'A',
-        scope: {
-            trigger: '=scrollToTop'
-        },
-        link: function postLink(scope, elem) {
-            scope.$watch('trigger', function() {
-                elem[0].scrollTop = 0;
-            });
-        }
-    };
-}]);
+//app.directive('scrollToTop', [function(){
+//    return {
+//        restrict: 'A',
+//        scope: {
+//            trigger: '=scrollToTop'
+//        },
+//        link: function postLink(scope, elem) {
+//            scope.$watch('trigger', function() {
+//                elem[0].scrollTop = 0;
+//            });
+//        }
+//    };
+//}]);

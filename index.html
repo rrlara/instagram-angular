@@ -72,7 +72,6 @@
                 <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
                     <ng-md-icon icon="more_vert"></ng-md-icon>
                 </md-button>
-                <div class="more" ng-click="getLoadMore()" ng-show="paginationURL">Load More</div>
                 <md-button class="md-fab md-primary md-hue-1" aria-label="Profile" ng-click="getLocation()">
                     <i class="fa fa-map-marker"></i>
                 </md-button>
@@ -94,6 +93,8 @@
 
 
         </md-grid-list>
+        <div ng-controller="LoadMoreCtrl" class="more" ng-click="getLoadMore()" ng-show="paginationURL">Load More</div>
+
 
     </md-content>
 
@@ -127,6 +128,7 @@
     <script src="js/instagram/bottomsheet.js"></script>
     <script src="js/instagram/dialog.js"></script>
     <script src="js/instagram/map.js"></script>
+    <script src="js/instagram/loadmore.js"></script>
 
 </body>
 

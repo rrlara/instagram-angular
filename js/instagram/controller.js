@@ -21,44 +21,6 @@ app.controller('InstagramCtrl', function($scope, $rootScope, $http, Profile, Pop
 		ln: ''
 	};
 
-
-	$scope.getLoadMore = function (){
-
-		console.log("$rootScope.paginationURL", $rootScope.paginationURL);
-		if ($rootScope.paginationURL){
-			$rootScope.notify = true;
-			LoadMore.more($rootScope.paginationURL)
-				.success(function(response, status, headers, config) {
-					//console.log(response);
-
-					$rootScope.currentHash.items = {};
-					if(response.meta.code !== 200){
-						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
-						return;
-					}
-					if(response.data.length > 0){
-						//$rootScope.currentHash.items = response.data;
-						////console.log(response.pagination.next_url);
-						console.log("LoadMore", response);
-
-						$rootScope.currentHash.items = response.data;
-
-						//scrollTop();
-
-						//angular.extend($rootScope.currentHash.items, response.data);
-
-
-						$rootScope.paginationURL = response.pagination.next_url;
-						$rootScope.notify = false;
-					}else{
-						$rootScope.currentHash.error = "This hashtag has returned no results";
-						$rootScope.notify = false;
-					}
-				});
-		}
-
-	}
-
 	$scope.clickedInstagram = function (item){
 
 		console.log("item: ", item);
