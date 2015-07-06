@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, Location, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
+app.controller('InstagramCtrl', function($scope, $rootScope, $http, Profile, Popular, Location, LoadMore, $mdSidenav, $mdBottomSheet, $mdDialog, $mdToast) {
 
 	$rootScope.notify = true;
 
@@ -20,6 +20,44 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 		lat: '',
 		ln: ''
 	};
+
+
+	$scope.getLoadMore = function (){
+
+		console.log("$rootScope.paginationURL", $rootScope.paginationURL);
+		if ($rootScope.paginationURL){
+			$rootScope.notify = true;
+			LoadMore.more($rootScope.paginationURL)
+				.success(function(response, status, headers, config) {
+					//console.log(response);
+
+					$rootScope.currentHash.items = {};
+					if(response.meta.code !== 200){
+						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+						return;
+					}
+					if(response.data.length > 0){
+						//$rootScope.currentHash.items = response.data;
+						////console.log(response.pagination.next_url);
+						console.log("LoadMore", response);
+
+						$rootScope.currentHash.items = response.data;
+
+						//scrollTop();
+
+						//angular.extend($rootScope.currentHash.items, response.data);
+
+
+						$rootScope.paginationURL = response.pagination.next_url;
+						$rootScope.notify = false;
+					}else{
+						$rootScope.currentHash.error = "This hashtag has returned no results";
+						$rootScope.notify = false;
+					}
+				});
+		}
+
+	}
 
 	$scope.clickedInstagram = function (item){
 
@@ -42,19 +80,19 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 		console.log($rootScope.imageClicked);
 	}
 
-	Profile.profile()
-		.success(function(response, status, headers, config) {
-			console.log(response);
-			if(response.meta.code !== 200){
-				$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
-				return;
-			}
-			if(response.data.length > 0){
-				$rootScope.currentHash.items = response.data;
-			}else{
-				$rootScope.currentHash.error = "This hashtag has returned no results";
-			}
-		});
+	//Profile.profile()
+	//	.success(function(response, status, headers, config) {
+	//		console.log(response);
+	//		if(response.meta.code !== 200){
+	//			$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+	//			return;
+	//		}
+	//		if(response.data.length > 0){
+	//			$rootScope.currentHash.items = response.data;
+	//		}else{
+	//			$rootScope.currentHash.error = "This hashtag has returned no results";
+	//		}
+	//	});
 
 	Popular.popular()
 		.success(function(response, status, headers, config) {
@@ -128,6 +166,7 @@ app.controller('InstagramCtrl', function($scope, $rootScope, Profile, Popular, L
 				.success(function(response, status, headers, config) {
 					console.log(response);
 					$rootScope.selectedHash.tag = 'Near you';
+					$rootScope.paginationURL = "";
 					if(response.meta.code !== 200){
 						$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
 						$rootScope.notify = false;

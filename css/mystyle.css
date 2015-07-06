@@ -167,6 +167,15 @@ md-progress-circular {
 	border: solid #ffffff 1px;
 }
 
+.more{
+	height: 50px;
+	width: 100%;
+	/*background-color: #3388ff;*/
+	color: #ffffff;
+	text-align: center;
+	line-height: 50px;
+}
+
 
 
 

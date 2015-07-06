@@ -8,6 +8,8 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 
 	$rootScope.showProgressBar = false;
 
+	$rootScope.paginationURL = "";
+
 	$scope.getHashTag = function (){
 		$rootScope.notify = true;
 		console.log("$rootScope.selectedHash", $rootScope.selectedHash.tag);
@@ -22,6 +24,8 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 				}
 				if(response.data.length > 0){
 					$rootScope.currentHash.items = response.data;
+					console.log(response.pagination.next_url);
+					$rootScope.paginationURL = response.pagination.next_url;
 					$rootScope.notify = false;
 				}else{
 					$rootScope.currentHash.error = "This hashtag has returned no results";
