@@ -10,8 +10,16 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 
 	$rootScope.paginationURL = "";
 
+	$scope.searchTag = function(tags){
+		$rootScope.imageClicked = [];
+		$rootScope.selectedHash.tag = tags;
+		$scope.getHashTag();
+
+	}
+
 	$scope.getHashTag = function (){
 		$rootScope.notify = true;
+		$rootScope.imageClicked = [];
 		console.log("$rootScope.selectedHash", $rootScope.selectedHash.tag);
 		Hashtags.hashtags(20, $rootScope.selectedHash.tag || "seattle")
 			.success(function(response, status, headers, config) {
@@ -31,6 +39,13 @@ app.controller('SideBarCtrl', function($scope, $rootScope, Hashtags) {
 					$rootScope.currentHash.error = "This hashtag has returned no results";
 					$rootScope.notify = false;
 				}
+
+				if(response.meta.code !== 400){
+					$rootScope.currentHash.error = response.meta.error_type + ' | ' + response.meta.error_message;
+					$rootScope.notify = false;
+					return;
+				}
+
 			});
 	}
 
